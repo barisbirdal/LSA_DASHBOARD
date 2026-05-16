@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kullanıcı Davranış Analizi</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="lsa-layout">
+        <aside class="lsa-sidebar">
+            <div class="logo" style="font-size: 18px; line-height: 1.2; margin-bottom: 20px;">letssellapp dashboard</div>
+            <nav>
+                <ul style="list-style: none; padding: 0;">
+                    <li onclick="window.location.href='/dashboard/index.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Dashboard</li>
+                    <li onclick="window.location.href='/dashboard/organization.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Müşteri Yönetimi (CRM)</li>
+                    <li onclick="window.location.href='/dashboard/analytics.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Analitik & Isı Haritası</li>
+                    <li onclick="window.location.href='/dashboard/billing.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Gelir & Faturalandırma</li>
+                    <li onclick="window.location.href='/dashboard/health.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Müşteri Sağlığı</li>
+                    <li onclick="window.location.href='/dashboard/expansion.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Büyüme & Genişleme</li>
+                    <li onclick="window.location.href='/dashboard/behavior.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Kullanıcı Davranışı</li>
+                    <li onclick="window.location.href='/dashboard/alerts.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Uyarılar & Alarmlar</li>
+                    <li onclick="window.location.href='/dashboard/executive.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Yönetici KPI</li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="lsa-main">
+            <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2>Kullanıcı Davranış Analizi</h2>
+                <select id="customerSelect" onchange="fetchBehavior()" style="padding: 8px; border-radius: 5px; border: 1px solid #ddd;">
+                    <option value="1">Tüm Şirket Ortalaması</option>
+                    <option value="2">Satış Ekibi A</option>
+                </select>
+            </header>
+
+            <div class="kpi-grid">
+                <div class="kpi-card" style="border-left-color: #9b59b6;">
+                    <div class="kpi-title">AI Coach Uygulama Oranı</div>
+                    <div class="kpi-value" id="valAi" style="color: #8e44ad;">-%</div>
+                </div>
+                <div class="kpi-card" style="border-left-color: #2ecc71;">
+                    <div class="kpi-title">Kazanılan Fırsat (LSA İçi)</div>
+                    <div class="kpi-value" id="valWon" style="color: #27ae60;">-</div>
+                </div>
+                <div class="kpi-card" style="border-left-color: #3498db;">
+                    <div class="kpi-title">Demo Video İzletme</div>
+                    <div class="kpi-value" id="valDemo" style="color: #2980b9;">-%</div>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 20px; margin-top: 20px;">
+                <div class="chart-container" style="flex: 2;">
+                    <h3>Satış Süreci Adım Tamamlanma Oranları</h3>
+                    <canvas id="funnelChart" height="120"></canvas>
+                </div>
+
+                <div class="chart-container" style="flex: 1;">
+                    <h3>Kayıp Fırsat Nedenleri</h3>
+                    <canvas id="lostChart" height="200"></canvas>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', fetchBehavior);
+        let funnelChartInstance = null;
+        let lostChartInstance = null;
+
+        async function fetchBehavior() {
+            const orgId = document.getElementById('customerSelect').value;
+
+            try {
+                const response = await fetch(`https://localhost:7160/api/dashboard/customer/${orgId}/behavior`);
+                const result = await response.json();
+
+                if (result.success) {
+                    const data = result.data;
+
+                    document.getElementById('valAi').innerText = `%${data.kpis.aiAdherence}`;
+                    document.getElementById('valWon').innerText = data.kpis.wonOpportunities;
+                    document.getElementById('valDemo').innerText = `%${data.kpis.demoCompletion}`;
+
+                    renderCharts(data.funnel, data.lostReasons);
+                }
+            } catch (error) {
+                console.error("Davranış verisi çekilemedi:", error);
+            }
+        }
+
+        function renderCharts(funnelData, lostData) {
+            // 1. Funnel (Bar Chart)
+            if (funnelChartInstance) funnelChartInstance.destroy();
+            const ctxFunnel = document.getElementById('funnelChart').getContext('2d');
+            funnelChartInstance = new Chart(ctxFunnel, {
+                type: 'bar',
+                data: {
+                    labels: funnelData.map(f => f.step),
+                    datasets: [{
+                        label: 'Tamamlanma Oranı (%)',
+                        data: funnelData.map(f => f.rate),
+                        backgroundColor: '#3498db',
+                        borderRadius: 5
+                    }]
+                },
+                options: {
+                    indexAxis: 'y', // Yatay bar
+                    plugins: { legend: { display: false } },
+                    scales: { x: { max: 100 } }
+                }
+            });
+
+            // 2. Donut (Lost Reasons)
+            if (lostChartInstance) lostChartInstance.destroy();
+            const ctxLost = document.getElementById('lostChart').getContext('2d');
+            lostChartInstance = new Chart(ctxLost, {
+                type: 'doughnut',
+                data: {
+                    labels: lostData.map(l => l.reason),
+                    datasets: [{
+                        data: lostData.map(l => l.percentage),
+                        backgroundColor: ['#e74c3c', '#f1c40f', '#95a5a6', '#34495e']
+                    }]
+                },
+                options: { plugins: { legend: { position: 'bottom' } }, cutout: '60%' }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LSA CRM Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="lsa-layout">
+        <aside class="lsa-sidebar">
+            <div class="logo" style="font-size: 18px; line-height: 1.2; margin-bottom: 20px;">letssellapp dashboard</div>
+            <nav>
+                <ul style="list-style: none; padding: 0;">
+                    <li onclick="window.location.href='/dashboard/index.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Dashboard</li>
+                    <li onclick="window.location.href='/dashboard/organization.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Müşteri Yönetimi (CRM)</li>
+                    <li onclick="window.location.href='/dashboard/analytics.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Analitik & Isı Haritası</li>
+                    <li onclick="window.location.href='/dashboard/billing.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Gelir & Faturalandırma</li>
+                    <li onclick="window.location.href='/dashboard/health.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Müşteri Sağlığı</li>
+                    <li onclick="window.location.href='/dashboard/expansion.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Büyüme & Genişleme</li>
+                    <li onclick="window.location.href='/dashboard/behavior.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Kullanıcı Davranışı</li>
+                    <li onclick="window.location.href='/dashboard/alerts.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Uyarılar & Alarmlar</li>
+                    <li onclick="window.location.href='/dashboard/executive.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Yönetici KPI</li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="lsa-main">
+            <header>
+                <h2>Yönetici Dashboard (B2B SaaS)</h2>
+            </header>
+
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-title">Toplam MRR</div>
+                    <div class="kpi-value" id="mrrValue">Yükleniyor...</div>
+                    <div class="kpi-footer" id="mrrMonth">---</div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-title">Müşteri Sağlığı (Enterprise)</div>
+                    <div class="kpi-value" id="healthScore">Yükleniyor...</div>
+                    <div class="kpi-footer">
+                        <span class="badge" id="riskStatus">Bekleniyor</span>
+                        <span id="unpaidCount" style="margin-left: 10px; font-size: 12px; color: #e74c3c;"></span>
+                    </div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-title">Aktif Kullanıcı Oranı</div>
+                    <div class="kpi-value">%84</div>
+                    <div class="kpi-footer" style="color: #2ecc71;">Geçen aya göre +%5</div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3>Ay Bazlı Büyüme (Örnek Grafik)</h3>
+                <canvas id="growthChart" height="80"></canvas>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

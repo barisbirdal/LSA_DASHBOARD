@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Müşteri Sağlığı (Health Score)</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .health-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            flex: 1;
+            border-top: 4px solid #ddd;
+        }
+
+        .score-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .score-label {
+            font-size: 13px;
+            color: #555;
+        }
+
+        .score-val {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .gauge-container {
+            width: 250px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .gauge-container {
+            width: 250px;
+            height: 150px; /* BUG'I ÇÖZEN HAYAT KURTARICI SATIR */
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div class="lsa-layout">
+        <aside class="lsa-sidebar">
+            <div class="logo" style="font-size: 18px; line-height: 1.2; margin-bottom: 20px;">letssellapp dashboard</div>
+            <nav>
+                <ul style="list-style: none; padding: 0;">
+                    <li onclick="window.location.href='/dashboard/index.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Dashboard</li>
+                    <li onclick="window.location.href='/dashboard/organization.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Müşteri Yönetimi (CRM)</li>
+                    <li onclick="window.location.href='/dashboard/analytics.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Analitik & Isı Haritası</li>
+                    <li onclick="window.location.href='/dashboard/billing.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Gelir & Faturalandırma</li>
+                    <li onclick="window.location.href='/dashboard/health.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Müşteri Sağlığı</li>
+                    <li onclick="window.location.href='/dashboard/expansion.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Büyüme & Genişleme</li>
+                    <li onclick="window.location.href='/dashboard/behavior.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Kullanıcı Davranışı</li>
+                    <li onclick="window.location.href='/dashboard/alerts.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Uyarılar & Alarmlar</li>
+                    <li onclick="window.location.href='/dashboard/executive.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Yönetici KPI</li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="lsa-main">
+            <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2>Müşteri Sağlığı (Customer Health Score)</h2>
+                <select id="customerSelect" onchange="fetchHealth()" style="padding: 8px; border-radius: 5px; border: 1px solid #ddd;">
+                    <option value="1">Macrosoft Demo A.Ş.</option>
+                    <option value="2">Test Müşterisi Ltd.</option>
+                </select>
+            </header>
+
+            <div style="display: flex; gap: 20px; align-items: center; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 20px;">
+                <div class="gauge-container">
+                    <canvas id="healthGauge"></canvas>
+                    <h1 id="valOverallScore" style="margin-top: -30px; font-size: 36px; color: #2c3e50;">-</h1>
+                    <p style="color: #888; font-size: 14px; margin-top: 5px;">Genel Sağlık Skoru</p>
+                </div>
+
+                <div class="kpi-grid" style="flex: 1; margin-bottom: 0;">
+                    <div class="kpi-card" id="cardRisk">
+                        <div class="kpi-title">Risk Durumu</div>
+                        <div class="kpi-value" id="valRisk">-</div>
+                    </div>
+                    <div class="kpi-card" style="border-left-color: #e74c3c;">
+                        <div class="kpi-title">Churn Tahmini</div>
+                        <div class="kpi-value" id="valChurn" style="color: #e74c3c;">-%</div>
+                    </div>
+                    <div class="kpi-card" style="border-left-color: #2ecc71;">
+                        <div class="kpi-title">Renewal (Yenileme) Olasılığı</div>
+                        <div class="kpi-value" id="valRenewal" style="color: #2ecc71;">-%</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 20px;">
+                <div class="health-section" style="border-top-color: #3498db;">
+                    <h3 style="color: #3498db; margin-bottom: 15px;">1) Kullanım Sağlığı</h3>
+                    <div class="score-row"><span class="score-label">Alt Skor (Max 35)</span><span class="score-val" id="valUsgScore">-</span></div>
+                    <div class="score-row"><span class="score-label">Aktif Kullanıcı Oranı</span><span class="score-val" id="valUsgActive">-%</span></div>
+                    <div class="score-row"><span class="score-label">Kullanılan Modül Çeşitliliği</span><span class="score-val" id="valUsgMod">-</span></div>
+                </div>
+
+                <div class="health-section" style="border-top-color: #f39c12;">
+                    <h3 style="color: #f39c12; margin-bottom: 15px;">2) Destek Sağlığı</h3>
+                    <div class="score-row"><span class="score-label">Alt Skor (Max 30)</span><span class="score-val" id="valSupScore">-</span></div>
+                    <div class="score-row"><span class="score-label">Son 30 Gün Ticket Sayısı</span><span class="score-val" id="valSupTicket">-</span></div>
+                    <div class="score-row"><span class="score-label">SLA İhlali</span><span class="score-val" id="valSupSla">-</span></div>
+                    <div class="score-row"><span class="score-label">Müşteri Memnuniyeti (CSAT)</span><span class="score-val" id="valSupCsat">-%</span></div>
+                </div>
+
+                <div class="health-section" style="border-top-color: #9b59b6;">
+                    <h3 style="color: #9b59b6; margin-bottom: 15px;">3) İş Sağlığı</h3>
+                    <div class="score-row"><span class="score-label">Alt Skor (Max 35)</span><span class="score-val" id="valBusScore">-</span></div>
+                    <div class="score-row"><span class="score-label">Sözleşme Bitişine Kalan</span><span class="score-val" id="valBusDays">- Gün</span></div>
+                    <div class="score-row"><span class="score-label">Ödeme Gecikmesi</span><span class="score-val" id="valBusPay">-</span></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', fetchHealth);
+        let gaugeInstance = null;
+
+        async function fetchHealth() {
+            const orgId = document.getElementById('customerSelect').value;
+
+            try {
+                const response = await fetch(`https://localhost:7160/api/dashboard/health/${orgId}`);
+                const result = await response.json();
+
+                if (result.success) {
+                    const data = result.data;
+
+                    // Üst Kısım
+                    document.getElementById('valOverallScore').innerText = data.overallScore;
+                    document.getElementById('valRisk').innerText = data.riskStatus;
+                    document.getElementById('valChurn').innerText = `%${data.predictions.churnRate}`;
+                    document.getElementById('valRenewal').innerText = `%${data.predictions.renewalRate}`;
+
+                    // Renklendirme
+                    const riskCard = document.getElementById('cardRisk');
+                    if (data.riskStatus === "Düşük") { riskCard.style.borderLeftColor = "#2ecc71"; document.getElementById('valRisk').style.color = "#2ecc71"; }
+                    else if (data.riskStatus === "Orta") { riskCard.style.borderLeftColor = "#f39c12"; document.getElementById('valRisk').style.color = "#f39c12"; }
+                    else { riskCard.style.borderLeftColor = "#e74c3c"; document.getElementById('valRisk').style.color = "#e74c3c"; }
+
+                    // Kullanım Detayları
+                    document.getElementById('valUsgScore').innerText = `${data.breakdown.usage.score} / 35`;
+                    document.getElementById('valUsgActive').innerText = `%${data.breakdown.usage.activeRate}`;
+                    document.getElementById('valUsgMod').innerText = `${data.breakdown.usage.modules} Modül`;
+
+                    // Destek Detayları
+                    document.getElementById('valSupScore').innerText = `${data.breakdown.support.score} / 30`;
+                    document.getElementById('valSupTicket').innerText = data.breakdown.support.tickets;
+                    document.getElementById('valSupSla').innerText = data.breakdown.support.slaBreach ? "⚠️ İhlal Var" : "✅ Yok";
+                    document.getElementById('valSupSla').style.color = data.breakdown.support.slaBreach ? "red" : "green";
+                    document.getElementById('valSupCsat').innerText = `%${data.breakdown.support.csat}`;
+
+                    // İş Detayları
+                    document.getElementById('valBusScore').innerText = `${data.breakdown.business.score} / 35`;
+                    document.getElementById('valBusDays').innerText = `${data.breakdown.business.daysLeft} Gün`;
+                    document.getElementById('valBusPay').innerText = data.breakdown.business.paymentDelayed ? "⚠️ Gecikmede" : "✅ Düzenli";
+                    document.getElementById('valBusPay').style.color = data.breakdown.business.paymentDelayed ? "red" : "green";
+
+                    // Gauge (Yarım Ay) Grafiği Çizimi
+                    renderGauge(data.overallScore);
+                }
+            } catch (error) {
+                console.error("Sağlık skoru çekilemedi:", error);
+            }
+        }
+
+        function renderGauge(score) {
+            if (gaugeInstance) gaugeInstance.destroy();
+            const ctx = document.getElementById('healthGauge').getContext('2d');
+
+            // Skora göre renk belirle (Kırmızı->Sarı->Yeşil)
+            let color = '#e74c3c';
+            if (score >= 50) color = '#f39c12';
+            if (score >= 80) color = '#2ecc71';
+
+            gaugeInstance = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    datasets: [{
+                        data: [score, 100 - score],
+                        backgroundColor: [color, '#ecf0f1'],
+                        borderWidth: 0,
+                        circumference: 180, // Yarım ay yapar
+                        rotation: 270 // Başlangıç açısı
+                    }]
+                },
+                options: {
+                    plugins: { tooltip: { enabled: false } },
+                    cutout: '80%',
+                    responsive: true
+                }
+            });
+        }
+    </script>
+</body>
+</html>

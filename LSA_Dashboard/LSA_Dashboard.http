@@ -1,0 +1,6 @@
+@LSA_Dashboard_HostAddress = http://localhost:5117
+
+GET {{LSA_Dashboard_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

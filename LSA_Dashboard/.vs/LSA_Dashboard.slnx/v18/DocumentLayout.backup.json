@@ -1,0 +1,281 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\baris\\OneDrive\\Belgeler\\LSA_DASHBOARD\\LSA_Dashboard\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5965699D-665E-4CE5-FB6C-CBD8BBF132DA}|LSA_Dashboard.csproj|c:\\users\\baris\\onedrive\\belgeler\\lsa_dashboard\\lsa_dashboard\\wwwroot\\dashboard\\executive.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5965699D-665E-4CE5-FB6C-CBD8BBF132DA}|LSA_Dashboard.csproj|solutionrelative:wwwroot\\dashboard\\executive.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965699D-665E-4CE5-FB6C-CBD8BBF132DA}|LSA_Dashboard.csproj|c:\\users\\baris\\onedrive\\belgeler\\lsa_dashboard\\lsa_dashboard\\wwwroot\\dashboard\\health.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5965699D-665E-4CE5-FB6C-CBD8BBF132DA}|LSA_Dashboard.csproj|solutionrelative:wwwroot\\dashboard\\health.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965699D-665E-4CE5-FB6C-CBD8BBF132DA}|LSA_Dashboard.csproj|c:\\users\\baris\\onedrive\\belgeler\\lsa_dashboard\\lsa_dashboard\\wwwroot\\dashboard\\organization.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5965699D-665E-4CE5-FB6C-CBD8BBF132DA}|LSA_Dashboard.csproj|solutionrelative:wwwroot\\dashboard\\organization.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965699D-665E-4CE5-FB6C-CBD8BBF132DA}|LSA_Dashboard.csproj|c:\\users\\baris\\onedrive\\belgeler\\lsa_dashboard\\lsa_dashboard\\wwwroot\\dashboard\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5965699D-665E-4CE5-FB6C-CBD8BBF132DA}|LSA_Dashboard.csproj|solutionrelative:wwwroot\\dashboard\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965699D-665E-4CE5-FB6C-CBD8BBF132DA}|LSA_Dashboard.csproj|c:\\users\\baris\\onedrive\\belgeler\\lsa_dashboard\\lsa_dashboard\\wwwroot\\dashboard\\expansion.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5965699D-665E-4CE5-FB6C-CBD8BBF132DA}|LSA_Dashboard.csproj|solutionrelative:wwwroot\\dashboard\\expansion.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965699D-665E-4CE5-FB6C-CBD8BBF132DA}|LSA_Dashboard.csproj|c:\\users\\baris\\onedrive\\belgeler\\lsa_dashboard\\lsa_dashboard\\wwwroot\\dashboard\\billing.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5965699D-665E-4CE5-FB6C-CBD8BBF132DA}|LSA_Dashboard.csproj|solutionrelative:wwwroot\\dashboard\\billing.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965699D-665E-4CE5-FB6C-CBD8BBF132DA}|LSA_Dashboard.csproj|c:\\users\\baris\\onedrive\\belgeler\\lsa_dashboard\\lsa_dashboard\\wwwroot\\dashboard\\behavior.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5965699D-665E-4CE5-FB6C-CBD8BBF132DA}|LSA_Dashboard.csproj|solutionrelative:wwwroot\\dashboard\\behavior.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965699D-665E-4CE5-FB6C-CBD8BBF132DA}|LSA_Dashboard.csproj|c:\\users\\baris\\onedrive\\belgeler\\lsa_dashboard\\lsa_dashboard\\wwwroot\\dashboard\\analytics.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5965699D-665E-4CE5-FB6C-CBD8BBF132DA}|LSA_Dashboard.csproj|solutionrelative:wwwroot\\dashboard\\analytics.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965699D-665E-4CE5-FB6C-CBD8BBF132DA}|LSA_Dashboard.csproj|c:\\users\\baris\\onedrive\\belgeler\\lsa_dashboard\\lsa_dashboard\\wwwroot\\dashboard\\alerts.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5965699D-665E-4CE5-FB6C-CBD8BBF132DA}|LSA_Dashboard.csproj|solutionrelative:wwwroot\\dashboard\\alerts.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965699D-665E-4CE5-FB6C-CBD8BBF132DA}|LSA_Dashboard.csproj|c:\\users\\baris\\onedrive\\belgeler\\lsa_dashboard\\lsa_dashboard\\services\\dashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5965699D-665E-4CE5-FB6C-CBD8BBF132DA}|LSA_Dashboard.csproj|solutionrelative:services\\dashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965699D-665E-4CE5-FB6C-CBD8BBF132DA}|LSA_Dashboard.csproj|c:\\users\\baris\\onedrive\\belgeler\\lsa_dashboard\\lsa_dashboard\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5965699D-665E-4CE5-FB6C-CBD8BBF132DA}|LSA_Dashboard.csproj|solutionrelative:controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965699D-665E-4CE5-FB6C-CBD8BBF132DA}|LSA_Dashboard.csproj|c:\\users\\baris\\onedrive\\belgeler\\lsa_dashboard\\lsa_dashboard\\wwwroot\\dashboard\\app.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{5965699D-665E-4CE5-FB6C-CBD8BBF132DA}|LSA_Dashboard.csproj|solutionrelative:wwwroot\\dashboard\\app.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965699D-665E-4CE5-FB6C-CBD8BBF132DA}|LSA_Dashboard.csproj|c:\\users\\baris\\onedrive\\belgeler\\lsa_dashboard\\lsa_dashboard\\wwwroot\\dashboard\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{5965699D-665E-4CE5-FB6C-CBD8BBF132DA}|LSA_Dashboard.csproj|solutionrelative:wwwroot\\dashboard\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965699D-665E-4CE5-FB6C-CBD8BBF132DA}|LSA_Dashboard.csproj|c:\\users\\baris\\onedrive\\belgeler\\lsa_dashboard\\lsa_dashboard\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5965699D-665E-4CE5-FB6C-CBD8BBF132DA}|LSA_Dashboard.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965699D-665E-4CE5-FB6C-CBD8BBF132DA}|LSA_Dashboard.csproj|c:\\users\\baris\\onedrive\\belgeler\\lsa_dashboard\\lsa_dashboard\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{5965699D-665E-4CE5-FB6C-CBD8BBF132DA}|LSA_Dashboard.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965699D-665E-4CE5-FB6C-CBD8BBF132DA}|LSA_Dashboard.csproj|c:\\users\\baris\\onedrive\\belgeler\\lsa_dashboard\\lsa_dashboard\\models\\lsadbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5965699D-665E-4CE5-FB6C-CBD8BBF132DA}|LSA_Dashboard.csproj|solutionrelative:models\\lsadbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "analytics.html",
+              "DocumentMoniker": "C:\\Users\\baris\\OneDrive\\Belgeler\\LSA_DASHBOARD\\LSA_Dashboard\\wwwroot\\dashboard\\analytics.html",
+              "RelativeDocumentMoniker": "wwwroot\\dashboard\\analytics.html",
+              "ToolTip": "C:\\Users\\baris\\OneDrive\\Belgeler\\LSA_DASHBOARD\\LSA_Dashboard\\wwwroot\\dashboard\\analytics.html",
+              "RelativeToolTip": "wwwroot\\dashboard\\analytics.html",
+              "ViewState": "AgIAADwAAAAAAAAAAAAcwFUAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-04-22T12:30:43.109Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "expansion.html",
+              "DocumentMoniker": "C:\\Users\\baris\\OneDrive\\Belgeler\\LSA_DASHBOARD\\LSA_Dashboard\\wwwroot\\dashboard\\expansion.html",
+              "RelativeDocumentMoniker": "wwwroot\\dashboard\\expansion.html",
+              "ToolTip": "C:\\Users\\baris\\OneDrive\\Belgeler\\LSA_DASHBOARD\\LSA_Dashboard\\wwwroot\\dashboard\\expansion.html",
+              "RelativeToolTip": "wwwroot\\dashboard\\expansion.html",
+              "ViewState": "AgIAACwAAAAAAAAAAAAcwEUAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-04-22T13:12:52.686Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "behavior.html",
+              "DocumentMoniker": "C:\\Users\\baris\\OneDrive\\Belgeler\\LSA_DASHBOARD\\LSA_Dashboard\\wwwroot\\dashboard\\behavior.html",
+              "RelativeDocumentMoniker": "wwwroot\\dashboard\\behavior.html",
+              "ToolTip": "C:\\Users\\baris\\OneDrive\\Belgeler\\LSA_DASHBOARD\\LSA_Dashboard\\wwwroot\\dashboard\\behavior.html",
+              "RelativeToolTip": "wwwroot\\dashboard\\behavior.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAcwBoAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-04-23T13:59:58.333Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "index.html",
+              "DocumentMoniker": "C:\\Users\\baris\\OneDrive\\Belgeler\\LSA_DASHBOARD\\LSA_Dashboard\\wwwroot\\dashboard\\index.html",
+              "RelativeDocumentMoniker": "wwwroot\\dashboard\\index.html",
+              "ToolTip": "C:\\Users\\baris\\OneDrive\\Belgeler\\LSA_DASHBOARD\\LSA_Dashboard\\wwwroot\\dashboard\\index.html",
+              "RelativeToolTip": "wwwroot\\dashboard\\index.html",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAMwBoAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-04-20T09:15:04.353Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "executive.html",
+              "DocumentMoniker": "C:\\Users\\baris\\OneDrive\\Belgeler\\LSA_DASHBOARD\\LSA_Dashboard\\wwwroot\\dashboard\\executive.html",
+              "RelativeDocumentMoniker": "wwwroot\\dashboard\\executive.html",
+              "ToolTip": "C:\\Users\\baris\\OneDrive\\Belgeler\\LSA_DASHBOARD\\LSA_Dashboard\\wwwroot\\dashboard\\executive.html",
+              "RelativeToolTip": "wwwroot\\dashboard\\executive.html",
+              "ViewState": "AgIAAFgAAAAAAAAAAAAYwJEAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-04-23T14:31:33.814Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "billing.html",
+              "DocumentMoniker": "C:\\Users\\baris\\OneDrive\\Belgeler\\LSA_DASHBOARD\\LSA_Dashboard\\wwwroot\\dashboard\\billing.html",
+              "RelativeDocumentMoniker": "wwwroot\\dashboard\\billing.html",
+              "ToolTip": "C:\\Users\\baris\\OneDrive\\Belgeler\\LSA_DASHBOARD\\LSA_Dashboard\\wwwroot\\dashboard\\billing.html",
+              "RelativeToolTip": "wwwroot\\dashboard\\billing.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAcwBoAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-04-22T12:47:29.063Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "health.html",
+              "DocumentMoniker": "C:\\Users\\baris\\OneDrive\\Belgeler\\LSA_DASHBOARD\\LSA_Dashboard\\wwwroot\\dashboard\\health.html",
+              "RelativeDocumentMoniker": "wwwroot\\dashboard\\health.html",
+              "ToolTip": "C:\\Users\\baris\\OneDrive\\Belgeler\\LSA_DASHBOARD\\LSA_Dashboard\\wwwroot\\dashboard\\health.html",
+              "RelativeToolTip": "wwwroot\\dashboard\\health.html",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAAAFMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-04-22T13:00:46.292Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "organization.html",
+              "DocumentMoniker": "C:\\Users\\baris\\OneDrive\\Belgeler\\LSA_DASHBOARD\\LSA_Dashboard\\wwwroot\\dashboard\\organization.html",
+              "RelativeDocumentMoniker": "wwwroot\\dashboard\\organization.html",
+              "ToolTip": "C:\\Users\\baris\\OneDrive\\Belgeler\\LSA_DASHBOARD\\LSA_Dashboard\\wwwroot\\dashboard\\organization.html",
+              "RelativeToolTip": "wwwroot\\dashboard\\organization.html",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABoAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-04-20T09:34:12.587Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "alerts.html",
+              "DocumentMoniker": "C:\\Users\\baris\\OneDrive\\Belgeler\\LSA_DASHBOARD\\LSA_Dashboard\\wwwroot\\dashboard\\alerts.html",
+              "RelativeDocumentMoniker": "wwwroot\\dashboard\\alerts.html",
+              "ToolTip": "C:\\Users\\baris\\OneDrive\\Belgeler\\LSA_DASHBOARD\\LSA_Dashboard\\wwwroot\\dashboard\\alerts.html",
+              "RelativeToolTip": "wwwroot\\dashboard\\alerts.html",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAMwFkAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-04-23T14:19:39.005Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "DashboardService.cs",
+              "DocumentMoniker": "C:\\Users\\baris\\OneDrive\\Belgeler\\LSA_DASHBOARD\\LSA_Dashboard\\Services\\DashboardService.cs",
+              "RelativeDocumentMoniker": "Services\\DashboardService.cs",
+              "ToolTip": "C:\\Users\\baris\\OneDrive\\Belgeler\\LSA_DASHBOARD\\LSA_Dashboard\\Services\\DashboardService.cs",
+              "RelativeToolTip": "Services\\DashboardService.cs",
+              "ViewState": "AgIAAOYBAAAAAAAAAAAAAPUBAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-20T08:30:20.297Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "DashboardController.cs",
+              "DocumentMoniker": "C:\\Users\\baris\\OneDrive\\Belgeler\\LSA_DASHBOARD\\LSA_Dashboard\\Controllers\\DashboardController.cs",
+              "RelativeDocumentMoniker": "Controllers\\DashboardController.cs",
+              "ToolTip": "C:\\Users\\baris\\OneDrive\\Belgeler\\LSA_DASHBOARD\\LSA_Dashboard\\Controllers\\DashboardController.cs",
+              "RelativeToolTip": "Controllers\\DashboardController.cs",
+              "ViewState": "AgIAAI4AAAAAAAAAAAAAAKAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-20T08:33:25.688Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "app.js",
+              "DocumentMoniker": "C:\\Users\\baris\\OneDrive\\Belgeler\\LSA_DASHBOARD\\LSA_Dashboard\\wwwroot\\dashboard\\app.js",
+              "RelativeDocumentMoniker": "wwwroot\\dashboard\\app.js",
+              "ToolTip": "C:\\Users\\baris\\OneDrive\\Belgeler\\LSA_DASHBOARD\\LSA_Dashboard\\wwwroot\\dashboard\\app.js",
+              "RelativeToolTip": "wwwroot\\dashboard\\app.js",
+              "ViewState": "AgIAABYAAAAAAAAAAAAAACIAAABcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-04-20T09:15:36.389Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "style.css",
+              "DocumentMoniker": "C:\\Users\\baris\\OneDrive\\Belgeler\\LSA_DASHBOARD\\LSA_Dashboard\\wwwroot\\dashboard\\style.css",
+              "RelativeDocumentMoniker": "wwwroot\\dashboard\\style.css",
+              "ToolTip": "C:\\Users\\baris\\OneDrive\\Belgeler\\LSA_DASHBOARD\\LSA_Dashboard\\wwwroot\\dashboard\\style.css",
+              "RelativeToolTip": "wwwroot\\dashboard\\style.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-04-20T09:15:22.606Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\baris\\OneDrive\\Belgeler\\LSA_DASHBOARD\\LSA_Dashboard\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\baris\\OneDrive\\Belgeler\\LSA_DASHBOARD\\LSA_Dashboard\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAACAAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-20T08:26:26.815Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\baris\\OneDrive\\Belgeler\\LSA_DASHBOARD\\LSA_Dashboard\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\baris\\OneDrive\\Belgeler\\LSA_DASHBOARD\\LSA_Dashboard\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-04-20T08:24:56.779Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "LsaDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\baris\\OneDrive\\Belgeler\\LSA_DASHBOARD\\LSA_Dashboard\\Models\\LsaDbContext.cs",
+              "RelativeDocumentMoniker": "Models\\LsaDbContext.cs",
+              "ToolTip": "C:\\Users\\baris\\OneDrive\\Belgeler\\LSA_DASHBOARD\\LSA_Dashboard\\Models\\LsaDbContext.cs",
+              "RelativeToolTip": "Models\\LsaDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-20T08:22:16.265Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+[
+  {
+    "ContainingType": "LSA_Dashboard.Controllers.DashboardController",
+    "Method": "GetAnalytics",
+    "RelativePath": "api/Dashboard/analytics",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "segment",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "sector",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LSA_Dashboard.Controllers.DashboardController",
+    "Method": "GetAlerts",
+    "RelativePath": "api/Dashboard/customer/{orgId}/alerts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orgId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LSA_Dashboard.Controllers.DashboardController",
+    "Method": "GetUserBehavior",
+    "RelativePath": "api/Dashboard/customer/{orgId}/behavior",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orgId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LSA_Dashboard.Controllers.DashboardController",
+    "Method": "GetBillingIntelligence",
+    "RelativePath": "api/Dashboard/customer/{orgId}/billing",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orgId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LSA_Dashboard.Controllers.DashboardController",
+    "Method": "GetExpansionIntelligence",
+    "RelativePath": "api/Dashboard/customer/{orgId}/expansion",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orgId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LSA_Dashboard.Controllers.DashboardController",
+    "Method": "GetCustomerUsage",
+    "RelativePath": "api/Dashboard/customer/{orgId}/usage",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orgId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LSA_Dashboard.Controllers.DashboardController",
+    "Method": "GetAllCustomers",
+    "RelativePath": "api/Dashboard/customers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LSA_Dashboard.Controllers.DashboardController",
+    "Method": "GetExecutiveKpis",
+    "RelativePath": "api/Dashboard/executive/kpis",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LSA_Dashboard.Controllers.DashboardController",
+    "Method": "GetCustomerHealth",
+    "RelativePath": "api/Dashboard/health/{orgId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orgId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LSA_Dashboard.Controllers.DashboardController",
+    "Method": "GetTotalMrr",
+    "RelativePath": "api/Dashboard/mrr",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LSA_Dashboard.Controllers.WeatherForecastController",
+    "Method": "Get",
+    "RelativePath": "WeatherForecast",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[LSA_Dashboard.WeatherForecast, LSA_Dashboard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetWeatherForecast"
+  }
+]

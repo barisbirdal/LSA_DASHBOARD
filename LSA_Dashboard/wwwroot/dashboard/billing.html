@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gelir & Faturalandırma (Billing Intelligence)</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="lsa-layout">
+        <aside class="lsa-sidebar">
+            <div class="logo" style="font-size: 18px; line-height: 1.2; margin-bottom: 20px;">letssellapp dashboard</div>
+            <nav>
+                <ul style="list-style: none; padding: 0;">
+                    <li onclick="window.location.href='/dashboard/index.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Dashboard</li>
+                    <li onclick="window.location.href='/dashboard/organization.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Müşteri Yönetimi (CRM)</li>
+                    <li onclick="window.location.href='/dashboard/analytics.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Analitik & Isı Haritası</li>
+                    <li onclick="window.location.href='/dashboard/billing.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Gelir & Faturalandırma</li>
+                    <li onclick="window.location.href='/dashboard/health.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Müşteri Sağlığı</li>
+                    <li onclick="window.location.href='/dashboard/expansion.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Büyüme & Genişleme</li>
+                    <li onclick="window.location.href='/dashboard/behavior.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Kullanıcı Davranışı</li>
+                    <li onclick="window.location.href='/dashboard/alerts.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Uyarılar & Alarmlar</li>
+                    <li onclick="window.location.href='/dashboard/executive.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Yönetici KPI</li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="lsa-main">
+            <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2>Billing Intelligence</h2>
+                <div>
+                    <select id="customerSelect" onchange="fetchBilling()" style="padding: 8px; border-radius: 5px; border: 1px solid #ddd;">
+                        <option value="1">Enterprise Müşteri A.Ş.</option>
+                        <option value="2">SMB Müşteri Ltd.</option>
+                    </select>
+                </div>
+            </header>
+
+            <div id="alertBox" style="display: none; padding: 15px; margin-bottom: 20px; border-radius: 8px; background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba;">
+                <strong>⚠️ Veri Kullanımı Uyarısı:</strong> Bu müşterinin saatlik kullanımı hızla artıyor! Bir üst pakete geçiş (Upsell) fırsatı olabilir.
+            </div>
+
+            <div class="kpi-grid">
+                <div class="kpi-card" style="border-left-color: #2ecc71;">
+                    <div class="kpi-title">Toplam MRR</div>
+                    <div class="kpi-value" id="valTotalMrr" style="color: #27ae60;">-</div>
+                </div>
+                <div class="kpi-card" style="border-left-color: #3498db;">
+                    <div class="kpi-title">Toplam ARR</div>
+                    <div class="kpi-value" id="valTotalArr" style="color: #2980b9;">-</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Müşteri Başı ARPU</div>
+                    <div class="kpi-value" id="valArpu">-</div>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 20px; margin-top: 20px;">
+                <div class="chart-container" style="flex: 1;">
+                    <h3>MRR Kırılımı (Sabit vs Kullanım)</h3>
+                    <canvas id="breakdownChart" height="200"></canvas>
+                </div>
+
+                <div class="chart-container" style="flex: 2;">
+                    <h3>Müşteri Başı Gelir Trendi (ARPU - 12 Ay)</h3>
+                    <canvas id="arpuTrendChart" height="100"></canvas>
+                </div>
+            </div>
+
+            <div class="kpi-grid" style="margin-top: 20px;">
+                <div class="kpi-card">
+                    <div class="kpi-title">Otomatik Fatura</div>
+                    <div class="kpi-value" id="valAutoInv" style="font-size: 20px;">-</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Bu Ayki Fatura</div>
+                    <div class="kpi-value" id="valInvStatus" style="font-size: 20px;">-</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Tahsilat Riski</div>
+                    <div class="kpi-value" id="valRisk" style="font-size: 20px;">-</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', fetchBilling);
+        let breakdownChartInstance = null;
+        let arpuChartInstance = null;
+
+        async function fetchBilling() {
+            const orgId = document.getElementById('customerSelect').value;
+
+            try {
+                const response = await fetch(`https://localhost:7160/api/dashboard/customer/${orgId}/billing`);
+                const result = await response.json();
+
+                if (result.success) {
+                    const data = result.data;
+
+                    // Rakamları Doldur (Formatlanmış)
+                    document.getElementById('valTotalMrr').innerText = `$${data.revenue.totalMrr.toLocaleString('tr-TR', { minimumFractionDigits: 2 })}`;
+                    document.getElementById('valTotalArr').innerText = `$${data.revenue.totalArr.toLocaleString('tr-TR', { minimumFractionDigits: 2 })}`;
+                    document.getElementById('valArpu').innerText = `$${data.revenue.arpu.toLocaleString('tr-TR', { minimumFractionDigits: 2 })}`;
+
+                    // Fatura Durumları
+                    document.getElementById('valAutoInv').innerText = data.billing.autoInvoice ? "✅ Aktif" : "❌ Kapalı";
+
+                    const statusEl = document.getElementById('valInvStatus');
+                    statusEl.innerText = data.billing.status === "Paid" ? "💰 Ödendi" : "⏳ Ödenmedi";
+                    statusEl.style.color = data.billing.status === "Paid" ? "#2ecc71" : "#e74c3c";
+
+                    const riskEl = document.getElementById('valRisk');
+                    riskEl.innerText = data.billing.risk;
+                    riskEl.style.color = data.billing.risk === "Yüksek" ? "#e74c3c" : (data.billing.risk === "Orta" ? "#f39c12" : "#2ecc71");
+
+                    // Uyarı Kutusu Kontrolü
+                    document.getElementById('alertBox').style.display = data.usage.isSpiking ? "block" : "none";
+
+                    // Grafikleri Çiz
+                    renderCharts(data.revenue, data.arpuTrend);
+                }
+            } catch (error) {
+                console.error("Faturalandırma verisi çekilemedi:", error);
+            }
+        }
+
+        function renderCharts(revenue, arpuTrend) {
+            // 1. Doughnut Chart (Kırılım)
+            if (breakdownChartInstance) breakdownChartInstance.destroy();
+            const ctxBreakdown = document.getElementById('breakdownChart').getContext('2d');
+            breakdownChartInstance = new Chart(ctxBreakdown, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Sabit Ücret MRR ($10/Kişi)', 'Kullanım Bazlı MRR ($1.5/Saat)'],
+                    datasets: [{
+                        data: [revenue.fixedMrr, revenue.usageMrr],
+                        backgroundColor: ['#9b59b6', '#3498db']
+                    }]
+                },
+                options: { plugins: { legend: { position: 'bottom' } }, cutout: '65%' }
+            });
+
+            // 2. Line Chart (ARPU Trendi)
+            if (arpuChartInstance) arpuChartInstance.destroy();
+            const ctxArpu = document.getElementById('arpuTrendChart').getContext('2d');
+            arpuChartInstance = new Chart(ctxArpu, {
+                type: 'line',
+                data: {
+                    labels: arpuTrend.map(t => t.month),
+                    datasets: [{
+                        label: 'ARPU ($)',
+                        data: arpuTrend.map(t => t.value),
+                        borderColor: '#2ecc71',
+                        backgroundColor: 'rgba(46, 204, 113, 0.1)',
+                        fill: true, tension: 0.4, borderWidth: 3
+                    }]
+                },
+                options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: false } } }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Büyüme & Genişleme (Expansion)</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .opportunity-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            flex: 1;
+            border-left: 5px solid #ddd;
+        }
+
+        .dept-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        .dept-active {
+            background: #e8f8f5;
+            color: #1abc9c;
+            border: 1px solid #1abc9c;
+        }
+
+        .dept-potential {
+            background: #fdf2e9;
+            color: #e67e22;
+            border: 1px dashed #e67e22;
+            cursor: help;
+        }
+
+        .ai-prediction-box {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="lsa-layout">
+        <aside class="lsa-sidebar">
+            <div class="logo" style="font-size: 18px; line-height: 1.2; margin-bottom: 20px;">letssellapp dashboard</div>
+            <nav>
+                <ul style="list-style: none; padding: 0;">
+                    <li onclick="window.location.href='/dashboard/index.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Dashboard</li>
+                    <li onclick="window.location.href='/dashboard/organization.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Müşteri Yönetimi (CRM)</li>
+                    <li onclick="window.location.href='/dashboard/analytics.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Analitik & Isı Haritası</li>
+                    <li onclick="window.location.href='/dashboard/billing.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Gelir & Faturalandırma</li>
+                    <li onclick="window.location.href='/dashboard/health.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Müşteri Sağlığı</li>
+                    <li onclick="window.location.href='/dashboard/expansion.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Büyüme & Genişleme</li>
+                    <li onclick="window.location.href='/dashboard/behavior.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Kullanıcı Davranışı</li>
+                    <li onclick="window.location.href='/dashboard/alerts.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Uyarılar & Alarmlar</li>
+                    <li onclick="window.location.href='/dashboard/executive.html'" style="cursor: pointer; padding: 12px 15px; margin-bottom: 5px; border-radius: 5px; transition: background 0.3s;">Yönetici KPI</li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="lsa-main">
+            <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2>Büyüme & Genişleme (Expansion)</h2>
+                <select id="customerSelect" onchange="fetchExpansion()" style="padding: 8px; border-radius: 5px; border: 1px solid #ddd;">
+                    <option value="1">Yükselen Yıldız A.Ş.</option>
+                    <option value="2">Durağan Müşteri Ltd.</option>
+                </select>
+            </header>
+
+            <div style="display: flex; gap: 20px; margin-bottom: 20px;">
+                <div class="opportunity-card" id="cardUpsell">
+                    <h3 style="color: #555; margin-bottom: 10px;">Upsell Potansiyeli</h3>
+                    <p style="font-size: 13px; color: #888;">Kullanıcı sayısı artış hızı ve derinliğine göre.</p>
+                    <div style="font-size: 28px; font-weight: bold; margin-top: 10px;" id="valUpsell">-</div>
+                </div>
+
+                <div class="opportunity-card" id="cardCross">
+                    <h3 style="color: #555; margin-bottom: 10px;">Cross-sell Potansiyeli</h3>
+                    <p style="font-size: 13px; color: #888;">Yeni modül/özellik satış fırsatı.</p>
+                    <div style="font-size: 28px; font-weight: bold; margin-top: 10px;" id="valCross">-</div>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 20px;">
+                <div class="chart-container" style="flex: 2;">
+                    <h3>Son 6 Ay Kullanıcı Artışı</h3>
+                    <canvas id="growthChart" height="100"></canvas>
+                </div>
+
+                <div class="chart-container" style="flex: 1;">
+                    <h3>Departman Kullanımı</h3>
+
+                    <h4 style="font-size: 13px; color: #777; margin: 15px 0 5px 0;">Aktif Kullanılanlar</h4>
+                    <div id="divActiveDepts">Yükleniyor...</div>
+
+                    <h4 style="font-size: 13px; color: #777; margin: 20px 0 5px 0;">Hedef (Potansiyel) Departmanlar</h4>
+                    <div id="divPotentialDepts">Yükleniyor...</div>
+                </div>
+            </div>
+
+            <div class="ai-prediction-box">
+                <div style="font-size: 40px;">🤖</div>
+                <div>
+                    <h3 style="margin-bottom: 5px;">Müşteri İçi Büyüme Tahmini (AI)</h3>
+                    <p id="valPrediction" style="opacity: 0.9;">Algoritma hesaplıyor...</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', fetchExpansion);
+        let growthChartInstance = null;
+
+        async function fetchExpansion() {
+            const orgId = document.getElementById('customerSelect').value;
+
+            try {
+                const response = await fetch(`https://localhost:7160/api/dashboard/customer/${orgId}/expansion`);
+                const result = await response.json();
+
+                if (result.success) {
+                    const data = result.data.intelligence;
+                    const metrics = result.data.growthMetrics;
+
+                    // Fırsatları Doldur ve Renklendir
+                    const elUpsell = document.getElementById('valUpsell');
+                    const cardUpsell = document.getElementById('cardUpsell');
+                    elUpsell.innerText = data.upsell;
+                    if(data.upsell === "Yüksek") { elUpsell.style.color = "#2ecc71"; cardUpsell.style.borderLeftColor = "#2ecc71"; }
+                    else if(data.upsell === "Orta") { elUpsell.style.color = "#f39c12"; cardUpsell.style.borderLeftColor = "#f39c12"; }
+                    else { elUpsell.style.color = "#e74c3c"; cardUpsell.style.borderLeftColor = "#e74c3c"; }
+
+                    const elCross = document.getElementById('valCross');
+                    const cardCross = document.getElementById('cardCross');
+                    elCross.innerText = data.crossSell;
+                    if(data.crossSell === "Yüksek") { elCross.style.color = "#2ecc71"; cardCross.style.borderLeftColor = "#2ecc71"; }
+                    else if(data.crossSell === "Orta") { elCross.style.color = "#f39c12"; cardCross.style.borderLeftColor = "#f39c12"; }
+                    else { elCross.style.color = "#e74c3c"; cardCross.style.borderLeftColor = "#e74c3c"; }
+
+                    // Departmanları Çiz
+                    const divActive = document.getElementById('divActiveDepts');
+                    divActive.innerHTML = '';
+                    data.activeDepartments.forEach(d => {
+                        divActive.innerHTML += `<span class="dept-badge dept-active">✓ ${d}</span>`;
+                    });
+
+                    const divPotential = document.getElementById('divPotentialDepts');
+                    divPotential.innerHTML = '';
+                    if(data.potentialDepartments.length === 0) divPotential.innerHTML = "<small style='color:#999;'>Tüm modüller aktif.</small>";
+                    data.potentialDepartments.forEach(d => {
+                        divPotential.innerHTML += `<span class="dept-badge dept-potential" title="Bu departmana satış yapılabilir">+ ${d}</span>`;
+                    });
+
+                    // AI Öngörüsü
+                    document.getElementById('valPrediction').innerText = data.predictionText;
+
+                    // Grafiği Çiz
+                    renderGrowthChart(result.data.chartData);
+                }
+            } catch (error) {
+                console.error("Genişleme verisi çekilemedi:", error);
+            }
+        }
+
+        function renderGrowthChart(chartData) {
+            if (growthChartInstance) growthChartInstance.destroy();
+            const ctx = document.getElementById('growthChart').getContext('2d');
+
+            growthChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: chartData.map(t => t.month),
+                    datasets: [{
+                        label: 'Aktif Kullanıcı Sayısı',
+                        data: chartData.map(t => t.users),
+                        backgroundColor: '#3498db',
+                        borderRadius: 5
+                    }]
+                },
+                options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
+            });
+        }
+    </script>
+</body>
+</html>
