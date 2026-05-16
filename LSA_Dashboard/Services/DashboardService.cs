@@ -1,4 +1,4 @@
-﻿#pragma warning disable CS8603, CS8629
+#pragma warning disable CS8603, CS8629
 using LSA_Dashboard.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -30,14 +30,8 @@ namespace LSA_Dashboard.Services
 
         public async Task<decimal> GetTotalMRRAsync()
         {
-            var currentMonth = DateTime.Now.Month;
-            var currentYear = DateTime.Now.Year;
-
-            return await _context.CrmInvoices
-                .Where(i => i.BillingPeriod.HasValue &&
-                            i.BillingPeriod.Value.Month == currentMonth &&
-                            i.BillingPeriod.Value.Year == currentYear)
-                .SumAsync(i => i.FixedFee ?? 0);
+            // Demo amaçlı sahte veri dönüyoruz (Veritabanı kapalı)
+            return await Task.FromResult(145000m);
         }
 
         // Yeni Health Score Metodumuz
@@ -105,36 +99,16 @@ namespace LSA_Dashboard.Services
         }
         public async Task<IEnumerable<object>> GetAllCustomersAsync()
         {
-            // Müşterileri, sektörlerini ve aktif sözleşmelerini çekiyoruz
-            var customers = await _context.CrmClientDetails
-                .Include(c => c.Sector)
-                .Include(c => c.Segment)
-                .Include(c => c.CrmContracts)
-                .ToListAsync();
-
-            // Veriyi arayüzde kolayca gösterebileceğimiz bir modele (Anonim tip) çeviriyoruz
-            var result = customers.Select(c => {
-                var activeContract = c.CrmContracts.FirstOrDefault(contract => contract.IsActive == true);
-
-                return new
-                {
-                    OrganizationId = c.OrganizationId,
-                    // Mevcut yapında 'Organizations' tablosu LsaDbContext'te map'li ise c.Organization.Name yazabilirsin.
-                    // Şimdilik test için ID'yi stringe çeviriyoruz veya dummy bir isim veriyoruz.
-                    CustomerName = $"Müşteri {c.OrganizationId} A.Ş.",
-                    AccountOwnerId = c.AccountOwnerUserId,
-                    SectorName = c.Sector?.Name ?? "Belirtilmemiş",
-                    SegmentName = c.Segment?.Name ?? "-",
-                    CountryRegion = $"{c.Country} / {c.Region}",
-                    ContractType = activeContract?.ContractType ?? "Yok",
-                    StartDate = activeContract?.StartDate?.ToString("dd.MM.yyyy") ?? "-",
-                    EndDate = activeContract?.EndDate?.ToString("dd.MM.yyyy") ?? "-",
-                    AutoRenew = activeContract?.AutoRenew == true ? "Evet" : "Hayır",
-                    PaymentMethod = activeContract?.PaymentMethod ?? "-"
-                };
-            });
-
-            return result;
+            // Satış demo ekranı için sahte (mock) müşteri verisi listesi
+            var result = new List<object>
+            {
+                new { OrganizationId = 1, CustomerName = "Acme Corp", AccountOwnerId = 1, SectorName = "Teknoloji", SegmentName = "Enterprise", CountryRegion = "Türkiye / İstanbul", ContractType = "Yıllık", StartDate = "01.01.2025", EndDate = "31.12.2026", AutoRenew = "Evet", PaymentMethod = "Kredi Kartı" },
+                new { OrganizationId = 2, CustomerName = "Global Lojistik", AccountOwnerId = 2, SectorName = "Lojistik", SegmentName = "SMB", CountryRegion = "Türkiye / İzmir", ContractType = "Aylık", StartDate = "15.03.2025", EndDate = "15.04.2025", AutoRenew = "Evet", PaymentMethod = "Havale" },
+                new { OrganizationId = 3, CustomerName = "Zirve Finans", AccountOwnerId = 1, SectorName = "Finans", SegmentName = "Mid-Market", CountryRegion = "Türkiye / Ankara", ContractType = "Yıllık", StartDate = "10.02.2025", EndDate = "10.02.2026", AutoRenew = "Hayır", PaymentMethod = "Kredi Kartı" },
+                new { OrganizationId = 4, CustomerName = "Tech Start", AccountOwnerId = 3, SectorName = "Yazılım", SegmentName = "Startup", CountryRegion = "Türkiye / İstanbul", ContractType = "6 Aylık", StartDate = "01.04.2025", EndDate = "01.10.2025", AutoRenew = "Evet", PaymentMethod = "Havale" },
+                new { OrganizationId = 5, CustomerName = "Sağlık Med", AccountOwnerId = 2, SectorName = "Sağlık", SegmentName = "Enterprise", CountryRegion = "Türkiye / Antalya", ContractType = "Yıllık", StartDate = "20.11.2024", EndDate = "20.11.2025", AutoRenew = "Evet", PaymentMethod = "Kredi Kartı" }
+            };
+            return await Task.FromResult(result);
         }
         public async Task<object> GetCustomerUsageStatsAsync(int organizationId)
         {
