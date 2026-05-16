@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -73,7 +73,7 @@
             const orgId = document.getElementById('customerSelect').value;
 
             try {
-                const response = await fetch(`https://localhost:7160/api/dashboard/customer/${orgId}/behavior`);
+                const response = await fetch(`/api/dashboard/customer/${orgId}/behavior`);
                 const result = await response.json();
 
                 if (result.success) {

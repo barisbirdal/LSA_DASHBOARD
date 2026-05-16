@@ -1,5 +1,5 @@
-﻿// Backend API adresimiz (Kendi portunla aynı olduğundan emin ol)
-const API_BASE_URL = 'https://localhost:7160/api/dashboard';
+// Backend API adresimiz (Kendi portunla aynı olduğundan emin ol)
+const API_BASE_URL = '/api/dashboard';
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchMRR();

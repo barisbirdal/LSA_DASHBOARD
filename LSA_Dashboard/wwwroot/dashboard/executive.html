@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -152,7 +152,7 @@
 
         async function fetchExecutiveKpis() {
             try {
-                const response = await fetch('https://localhost:7160/api/dashboard/executive/kpis');
+                const response = await fetch('/api/dashboard/executive/kpis');
                 const result = await response.json();
 
                 if (result.success) {

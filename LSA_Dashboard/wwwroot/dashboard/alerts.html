@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -119,7 +119,7 @@
             const container = document.getElementById('alertContainer');
 
             try {
-                const response = await fetch(`https://localhost:7160/api/dashboard/customer/${orgId}/alerts`);
+                const response = await fetch(`/api/dashboard/customer/${orgId}/alerts`);
                 const result = await response.json();
 
                 if (result.success) {
